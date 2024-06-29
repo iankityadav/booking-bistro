@@ -11,18 +11,11 @@ import { Router } from '@angular/router';
 export class NavbarComponent {
   menuFlag = false;
   profileFlag = false;
-  constructor(private router: Router) {
-    let url = this.router.config;
-    console.log(url);
-  }
+  currentPath = window.location.pathname;
   showMenu() {
     this.menuFlag = !this.menuFlag;
   }
   showProfileFlag() {
     this.profileFlag = !this.profileFlag;
-  }
-  getSelectedTab() {
-    let url = this.router.url;
-    console.log(url);
   }
 }
