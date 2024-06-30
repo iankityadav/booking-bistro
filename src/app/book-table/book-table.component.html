@@ -1,1 +1,79 @@
-<p>book-table works!</p>
+<div
+  class="flex justify-center items-center min-h-[90vh] w-full p-16 bg-slate-50"
+>
+  <div class="flex flex-col w-full bg-white">
+    <div class="hidden sm:block">
+      <div class="grid grid-cols-2 shadow-lg rounded-lg p-6">
+        <div class="flex flex-col justify-center items-center">
+          <div class="font-sans">
+            <div class="text-4xl font-extralight tracking-wide flex mb-4">
+              Idyll - Indian Plates & Cocktails
+            </div>
+            <div class="justify-self-start text-gray-500">
+              Dehradun, Uttarakhand
+            </div>
+            <div class="justify-self-start text-red-300">Open now</div>
+          </div>
+        </div>
+        <div class="min-h-[18rem] w-full flex flex-col gap-4">
+          <div
+            class="w-full h-full bg-cover bg-no-repeat"
+            style="background-image: url('/images/food-plate.jpg')"
+          ></div>
+          <div
+            class="w-full h-full bg-cover bg-no-repeat"
+            style="background-image: url('/images/food.jpg')"
+          ></div>
+        </div>
+      </div>
+    </div>
+    <div class="flex sm:hidden">
+      <div class="flex flex-col w-full">
+        <div class="min-h-[14rem] w-full flex flex-col gap-1">
+          <div
+            class="w-full h-full bg-cover bg-no-repeat"
+            style="background-image: url('/images/food-plate.jpg')"
+          ></div>
+          <div class="shadow-md rounded-lg p-2">
+            <div class="text-xl font-extralight tracking-wide flex mb-1.5">
+              Idyll - Indian Plates & Cocktails
+            </div>
+            <div class="text-sm justify-self-start text-gray-500">
+              Dehradun, Uttarakhand
+            </div>
+            <div class="text-sm justify-self-start text-red-300">Open now</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bg-gray-200 p-6 flex flex-col w-full gap-y-4">
+      <div class="flex gap-x-4">
+        <input
+          type="date"
+          name=""
+          id=""
+          class="px-2 py-1 rounded-md"
+          [min]="'2024-06-30'"
+        />
+        <select name="" id="" class="px-2 py-1 rounded-md">
+          <option value="" class="p-2">2 guests</option>
+          <option value="" class="p-2">4 guests</option>
+        </select>
+      </div>
+      <div class="flex gap-4 flex-wrap">
+        <button class="px-6 py-4 bg-white shadow-md rounded-md flex">
+          01:00 PM
+        </button>
+        <button class="px-6 py-4 bg-white shadow-md rounded-md flex">
+          01:30 PM
+        </button>
+        <button class="px-6 py-4 bg-white shadow-md rounded-md flex">
+          01:00 PM
+        </button>
+        <button class="px-6 py-4 bg-white shadow-md rounded-md flex">
+          01:30 PM
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
