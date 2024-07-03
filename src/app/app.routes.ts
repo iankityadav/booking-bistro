@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './auth.guard';
 
 export const routes: Routes = [
   {
@@ -22,16 +23,19 @@ export const routes: Routes = [
       import('./book-table/book-table.component').then(
         (c) => c.BookTableComponent
       ),
+    canActivate: [authGuard],
   },
   {
     path: 'booking',
     loadComponent: () =>
       import('./booking/booking.component').then((c) => c.BookingComponent),
+    canActivate: [authGuard],
   },
   {
     path: 'dashboard',
     loadComponent: () =>
       import('./home/home.component').then((c) => c.HomeComponent),
+    canActivate: [authGuard],
   },
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
 ];
