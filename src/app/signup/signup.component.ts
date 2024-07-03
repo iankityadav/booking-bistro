@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-signup',
@@ -29,10 +30,26 @@ export class SignupComponent {
       })
       .subscribe({
         next: () => {
-          this.router.navigate(['/']);
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            text: 'User registered successfully',
+            showConfirmButton: false,
+            timer: 1500,
+            toast: true,
+          });
+          this.router.navigate(['/login']);
         },
         error: (error) => {
           console.error('Login failed', error);
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            text: 'Error occured!!',
+            showConfirmButton: false,
+            timer: 1500,
+            toast: true,
+          });
         },
       });
   }
