@@ -32,6 +32,7 @@ export class AuthService {
 
   private setToken(token: string): void {
     localStorage.setItem(this.tokenKey, token);
+    this.authStatusSubject.next(true);
   }
 
   getToken(): string | null {
@@ -48,5 +49,6 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem(this.tokenKey);
+    this.authStatusSubject.next(false);
   }
 }
