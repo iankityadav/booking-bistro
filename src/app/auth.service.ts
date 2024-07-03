@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
+import { SignupRequest, User } from './model/types';
 
 @Injectable({
   providedIn: 'root',
@@ -21,10 +22,10 @@ export class AuthService {
       .pipe(tap((response) => this.setToken(response.token)));
   }
 
-  signup(user: any): Observable<any> {
+  signup(user: SignupRequest): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http
-      .post<any>(`${this.apiUrl}/auth/signup`, user, { headers })
+      .post<any>(`${this.apiUrl}/auth/sign-up`, user, { headers })
       .pipe(tap((response) => this.setToken(response.token)));
   }
 
