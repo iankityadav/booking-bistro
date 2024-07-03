@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
-import { SignupRequest, User } from './model/types';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { SignupRequest } from './model/types';
 
 @Injectable({
   providedIn: 'root',
@@ -9,6 +9,7 @@ import { SignupRequest, User } from './model/types';
 export class AuthService {
   apiUrl = 'http://localhost:8080/api';
   tokenKey = '';
+  private authStatusSubject = new BehaviorSubject<boolean>(this.isLoggedIn());
 
   constructor(private http: HttpClient) {}
   login(username: string, password: string): Observable<any> {
@@ -39,6 +40,10 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     return !!this.getToken();
+  }
+
+  getAuthStatus(): Observable<boolean> {
+    return this.authStatusSubject.asObservable();
   }
 
   logout(): void {
