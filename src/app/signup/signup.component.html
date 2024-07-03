@@ -50,6 +50,7 @@
         <div class="mt-2">
           <input
             [(ngModel)]="email"
+            [email]="email"
             id="email"
             name="email"
             type="email"
@@ -90,6 +91,7 @@
         <div class="mt-2">
           <input
             [(ngModel)]="phone"
+            [pattern]="'\d{10}'"
             id="phone"
             name="phone"
             type="tel"
