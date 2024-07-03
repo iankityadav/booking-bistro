@@ -35,7 +35,6 @@ export const routes: Routes = [
     path: 'dashboard',
     loadComponent: () =>
       import('./home/home.component').then((c) => c.HomeComponent),
-    canActivate: [authGuard],
   },
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
 ];

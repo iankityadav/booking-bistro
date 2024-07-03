@@ -7,7 +7,7 @@ import { Booking } from './model/types';
   providedIn: 'root',
 })
 export class ApiService {
-  private apiUrl = 'http://localhost:8080/';
+  private apiUrl = 'http://localhost:8080/api';
 
   constructor(private http: HttpClient) {}
 
@@ -69,6 +69,12 @@ export class ApiService {
   viewAllReservationRequests(page: number, size: number): Observable<any> {
     return this.http.get<any>(
       `${this.apiUrl}/reservations?page=${page}&size=${size}&sort=createdAt,asc`
+    );
+  }
+
+  viewAllRestaurants(page: number, size: number): Observable<any> {
+    return this.http.get<any>(
+      `${this.apiUrl}/restaurants?page=${page}&size=${size}`
     );
   }
 }

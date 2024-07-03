@@ -15,7 +15,7 @@ export class NavbarComponent {
   currentPath = window.location.pathname;
   isLoggedIn: boolean = false;
   constructor(private authService: AuthService) {
-    authService
+    this.authService
       .getAuthStatus()
       .subscribe((status) => (this.isLoggedIn = status));
   }

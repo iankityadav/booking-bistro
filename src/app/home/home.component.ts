@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
+import { ApiService } from '../api.service';
+import { RestaurantsPage } from '../model/types';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-home',
@@ -10,50 +13,64 @@ import { Router } from '@angular/router';
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
-  constructor(private router: Router) {}
   restaurants = [
     {
       id: 0,
       image: '/images/pexels-chanwalrus-941861.jpg',
-      name: 'Chanwalrus',
     },
-    { id: 1, image: '/images/pexels-emrecan-2079438.jpg', name: 'Emrecan' },
+    { id: 1, image: '/images/pexels-emrecan-2079438.jpg', name: '' },
     {
       id: 2,
       image: '/images/pexels-igor-starkov-233202-1307698.jpg',
-      name: 'Igor Starkov',
     },
     {
       id: 3,
       image: '/images/pexels-lawrencesuzara-1581554.jpg',
-      name: 'Lawrencesuzara',
     },
     {
       id: 4,
       image: '/images/pexels-life-of-pix-67468.jpg',
-      name: 'Life of Pix',
     },
-    { id: 5, image: '/images/pexels-pixabay-260922.jpg', name: 'Pixabay' },
-    { id: 6, image: '/images/pexels-pixabay-262918.jpg', name: 'Pexel' },
+    { id: 5, image: '/images/pexels-pixabay-260922.jpg' },
+    { id: 6, image: '/images/pexels-pixabay-262918.jpg' },
     {
       id: 7,
       image: '/images/pexels-vedanti-66315-239975.jpg',
-      name: 'Vedanti',
     },
-    { id: 8, image: '/images/pexels-kaboompics-6267.jpg', name: 'Kaboom' },
-    { id: 9, image: '/images/pexels-wb2008-2290070.jpg', name: 'Shaan' },
+    { id: 8, image: '/images/pexels-kaboompics-6267.jpg' },
+    { id: 9, image: '/images/pexels-wb2008-2290070.jpg' },
   ];
   length = 50;
   pageSize = 10;
   pageIndex = 0;
   pageSizeOptions = [5, 10, 25];
-
+  data: any[] | undefined;
   hidePageSize = false;
   showPageSizeOptions = true;
   showFirstLastButtons = true;
   disabled = false;
-
+  isLoggedIn: boolean = false;
   pageEvent: PageEvent | undefined;
+
+  constructor(
+    private router: Router,
+    private apiService: ApiService,
+    private authService: AuthService
+  ) {
+    this.authService
+      .getAuthStatus()
+      .subscribe((status) => (this.isLoggedIn = status));
+    this.apiService
+      .viewAllRestaurants(this.pageIndex, this.pageSize)
+      .subscribe((data: RestaurantsPage) => {
+        this.shuffleArray(this.restaurants);
+        let list: any[] = [];
+        data.content.map((e, i) => {
+          list.push({ ...e, ...this.restaurants[i] });
+        });
+        this.data = list;
+      });
+  }
 
   handlePageEvent(e: PageEvent) {
     console.log(e);
