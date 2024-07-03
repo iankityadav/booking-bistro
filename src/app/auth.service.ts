@@ -27,7 +27,7 @@ export class AuthService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http
       .post<any>(`${this.apiUrl}/auth/sign-up`, user, { headers })
-      .pipe(tap((response) => this.setToken(response.token)));
+      .pipe(tap((response) => console.log(response.token)));
   }
 
   private setToken(token: string): void {

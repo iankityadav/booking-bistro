@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -16,6 +16,7 @@ export class SignupComponent {
   password: string = '';
   fullName: string = '';
   phone: string = '';
+  role: boolean = false;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -26,7 +27,7 @@ export class SignupComponent {
         password: this.password,
         fullName: this.fullName,
         phone: this.phone,
-        role: '0',
+        role: this.role ? '1' : '0',
       })
       .subscribe({
         next: () => {
@@ -54,8 +55,8 @@ export class SignupComponent {
       });
   }
 
-  onSubmit(form: any) {
-    console.log(this.email, this.password);
-    this.signup();
+  onSubmit(form: NgForm) {
+    console.log(this.role, this.email);
+    if (form.valid) this.signup();
   }
 }
