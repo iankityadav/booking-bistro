@@ -68,3 +68,41 @@ export interface RestaurantsPage {
   };
   empty: boolean;
 }
+
+export interface BookingPage {
+  totalElements: number;
+  totalPages: number;
+  first: boolean;
+  last: boolean;
+  size: number;
+  content: {
+    id: number;
+    restaurant: any;
+    date: string;
+    numberOfGuests: number;
+    timeSlot: string;
+    status: string;
+    createdAt: string;
+    reservationRequest: any;
+  }[];
+  number: number;
+  sort: {
+    empty: boolean;
+    sorted: boolean;
+    unsorted: boolean;
+  };
+  numberOfElements: number;
+  pageable: {
+    pageNumber: number;
+    pageSize: number;
+    sort: {
+      empty: boolean;
+      sorted: boolean;
+      unsorted: boolean;
+    };
+    offset: number;
+    paged: boolean;
+    unpaged: boolean;
+  };
+  empty: boolean;
+}
