@@ -4,12 +4,16 @@
   <div class="flex flex-col w-full bg-white">
     <div class="hidden sm:block">
       <div class="grid grid-cols-2 shadow-lg rounded-lg p-6">
-        <div class="flex flex-col justify-center items-center">
+        <div class="flex flex-col justify-center">
           <div class="font-sans gap-y-1 grid">
-            <div class="text-4xl font-extralight tracking-wide flex mb-4">
-              Idyll - Indian Plates & Cocktails
+            <div class="text-4xl font-extralight tracking-wide flex mb-2">
+              {{ state.name }}
             </div>
-            <div class="flex text-gray-500">
+            <div class="flex text-sm text-gray-400 mb-4">
+              Registered Date
+              <span class="px-3">{{ moment.format("DD-MM-YYYY") }}</span>
+            </div>
+            <div class="flex gap-x-2 text-gray-500">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -29,9 +33,9 @@
                   d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
                 />
               </svg>
-              Dehradun, Uttarakhand
+              {{ state.location }}
             </div>
-            <div class="flex text-red-300">
+            <div class="flex gap-x-2 text-red-300">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -47,6 +51,23 @@
                 />
               </svg>
               Open now
+            </div>
+            <div class="flex gap-x-2 text-gray-500">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z"
+                />
+              </svg>
+              {{ state.cuisines }}
             </div>
           </div>
         </div>
@@ -71,7 +92,11 @@
           ></div>
           <div class="shadow-md rounded-lg p-2 gap-y-1 grid">
             <div class="text-xl font-extralight tracking-wide flex mb-1.5">
-              Idyll - Indian Plates & Cocktails
+              {{ state.name }}
+            </div>
+            <div class="flex text-sm text-gray-400 mb-1">
+              Registered Date
+              <span class="px-3">{{ moment.format("DD-MM-YYYY") }}</span>
             </div>
             <div class="text-sm flex text-gray-500">
               <svg
@@ -93,7 +118,7 @@
                   d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
                 />
               </svg>
-              Dehradun, Uttarakhand
+              {{ state.location }}
             </div>
             <div class="flex text-sm text-red-300">
               <svg
@@ -111,6 +136,23 @@
                 />
               </svg>
               Open now
+            </div>
+            <div class="flex text-gray-500">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z"
+                />
+              </svg>
+              {{ state.cuisines }}
             </div>
           </div>
         </div>

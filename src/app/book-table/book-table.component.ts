@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import moment from 'moment';
 
 @Component({
   selector: 'app-book-table',
@@ -10,9 +11,10 @@ import { Router } from '@angular/router';
 })
 export class BookTableComponent {
   state: any;
+  moment: moment.Moment;
   constructor(private router: Router) {
-    console.log(this.router.getCurrentNavigation());
-
-    this.state = JSON.stringify(this.router.getCurrentNavigation()?.extras);
+    this.state = this.router.lastSuccessfulNavigation?.extras.state;
+    console.log(this.state);
+    this.moment = moment(this.state.createdAt);
   }
 }

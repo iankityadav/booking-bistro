@@ -18,7 +18,7 @@ export class HomeComponent {
       id: 0,
       image: '/images/pexels-chanwalrus-941861.jpg',
     },
-    { id: 1, image: '/images/pexels-emrecan-2079438.jpg', name: '' },
+    { id: 1, image: '/images/pexels-emrecan-2079438.jpg' },
     {
       id: 2,
       image: '/images/pexels-igor-starkov-233202-1307698.jpg',
@@ -69,6 +69,7 @@ export class HomeComponent {
           list.push({ ...e, ...this.restaurants[i] });
         });
         this.data = list;
+        console.log(this.data);
       });
   }
 
@@ -88,8 +89,8 @@ export class HomeComponent {
     }
   }
 
-  gotoBooking(id: number) {
-    this.router.navigate(['/book'], { state: { restaurantId: id } });
+  gotoBooking(res: any) {
+    this.router.navigate(['/book'], { state: { ...res } });
   }
 
   shuffleArray(array: any[]) {
