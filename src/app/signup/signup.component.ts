@@ -56,7 +56,7 @@ export class SignupComponent {
   }
 
   onSubmit(form: NgForm) {
-    console.log(this.role, this.email);
-    if (form.valid) this.signup();
+    console.log(this.role, form);
+    this.signup();
   }
 }

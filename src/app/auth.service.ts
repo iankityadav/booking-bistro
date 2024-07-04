@@ -9,6 +9,7 @@ import { SignupRequest } from './model/types';
 export class AuthService {
   apiUrl = 'http://localhost:8080/api';
   tokenKey = '';
+  userId = '';
   private authStatusSubject = new BehaviorSubject<boolean>(this.isLoggedIn());
 
   constructor(private http: HttpClient) {}
@@ -20,7 +21,7 @@ export class AuthService {
         { username, password },
         { headers }
       )
-      .pipe(tap((response) => this.setToken(response.token)));
+      .pipe(tap((response) => this.setter(response)));
   }
 
   signup(user: SignupRequest): Observable<any> {
@@ -33,6 +34,19 @@ export class AuthService {
   private setToken(token: string): void {
     localStorage.setItem(this.tokenKey, token);
     this.authStatusSubject.next(true);
+  }
+
+  private setUserId(id: string) {
+    return localStorage.setItem('userId', id);
+  }
+
+  private setter(response: any) {
+    this.setToken(response.token);
+    this.setUserId(response.userId);
+  }
+
+  getUserId() {
+    return localStorage.getItem('userId');
   }
 
   getToken(): string | null {
