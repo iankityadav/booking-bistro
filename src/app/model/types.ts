@@ -1,6 +1,6 @@
 export interface Booking {
   bookingId?: number;
-  customerId: number;
+  userId: string;
   restaurantId: number;
   date: string;
   numberOfGuests: number;

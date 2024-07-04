@@ -11,7 +11,9 @@
             </div>
             <div class="flex text-sm text-gray-400 mb-4">
               Registered Date
-              <span class="px-3">{{ moment.format("DD-MM-YYYY") }}</span>
+              <span class="px-3">{{
+                moment(state.createdAt).format("DD-MM-YYYY")
+              }}</span>
             </div>
             <div class="flex gap-x-2 text-gray-500">
               <svg
@@ -96,7 +98,9 @@
             </div>
             <div class="flex text-sm text-gray-400 mb-1">
               Registered Date
-              <span class="px-3">{{ moment.format("DD-MM-YYYY") }}</span>
+              <span class="px-3">{{
+                moment(state.createdAt).format("DD-MM-YYYY")
+              }}</span>
             </div>
             <div class="text-sm flex text-gray-500">
               <svg
@@ -159,34 +163,42 @@
       </div>
     </div>
     <div class="bg-gray-200 p-6 flex flex-col w-full gap-y-4 rounded-b-md">
-      <div class="flex gap-x-4">
+      <div class="flex gap-x-4 gap-y-2">
         <input
+          [(ngModel)]="booking.date"
           type="date"
           name=""
           id=""
           class="px-2 py-1 rounded-md"
-          [min]="'2024-06-30'"
+          [min]="moment().format('YYYY-MM-DD')"
         />
-        <select name="" id="" class="px-2 py-1 rounded-md">
-          <option value="" class="p-2">2 guests</option>
-          <option value="" class="p-2">4 guests</option>
+        <select
+          [(ngModel)]="booking.numberOfGuests"
+          name="guests"
+          id="guests"
+          class="px-2 py-1 rounded-md"
+        >
+          @for (item of guest; track $index) {
+          <option [value]="item" [selected]="item == 2">
+            {{ item }} guests
+          </option>
+          }
+        </select>
+        <select
+          [(ngModel)]="booking.timeSlot"
+          name="timeSlot"
+          id="timeSlot"
+          class="px-2 py-1 rounded-md"
+        >
+          @for (item of slots; track $index) {
+          <option [value]="item">{{ item }}</option>
+          }
         </select>
       </div>
-      <div class="flex gap-4 flex-wrap">
-        <button class="px-6 py-4 bg-white shadow-md rounded-md flex">
-          01:00 PM
-        </button>
-        <button class="px-6 py-4 bg-white shadow-md rounded-md flex">
-          01:30 PM
-        </button>
-        <button class="px-6 py-4 bg-white shadow-md rounded-md flex">
-          02:00 PM
-        </button>
-        <button class="px-6 py-4 bg-white shadow-md rounded-md flex">
-          02:30 PM
-        </button>
-      </div>
+
       <button
+        type="submit"
+        (click)="createBooking()"
         class="sm:w-1/3 px-3 shadow-lg bg-red-400 hover:bg-red-300 text-white text-center p-1 xl:py-2 font-medium rounded-full"
       >
         Proceed
