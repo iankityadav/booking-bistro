@@ -4,11 +4,12 @@ import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { RestaurantsPage } from '../model/types';
 import { AuthService } from '../auth.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [MatPaginatorModule],
+  imports: [MatPaginatorModule, FormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
@@ -51,6 +52,8 @@ export class HomeComponent {
   disabled = false;
   isLoggedIn: boolean = false;
   pageEvent: PageEvent | undefined;
+  searchValue: string = '';
+  visibleRestaurants: any[] | undefined;
 
   constructor(
     private router: Router,
@@ -69,6 +72,7 @@ export class HomeComponent {
           list.push({ ...e, ...this.restaurants[i] });
         });
         this.data = list;
+        this.onSearch('');
         console.log(this.data);
       });
   }
@@ -97,6 +101,18 @@ export class HomeComponent {
     for (let i = array.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+
+  onSearch(value: string): void {
+    if (!value) {
+      this.visibleRestaurants = this.data;
+    } else {
+      this.visibleRestaurants = this.data?.filter(
+        (restaurant) =>
+          restaurant.name.toLowerCase().includes(value.toLowerCase()) ||
+          restaurant.location.toLowerCase().includes(value.toLowerCase())
+      );
     }
   }
 }
